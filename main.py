@@ -2,7 +2,7 @@ import sqlite3
 import sys
 
 from PyQt5 import uic
-from PyQt5.QtWidgets import QApplication, QMainWindow, QTableWidget, QTableWidgetItem
+from PyQt5.QtWidgets import QApplication, QMainWindow, QTableWidgetItem
 
 
 class MyWidget(QMainWindow):
