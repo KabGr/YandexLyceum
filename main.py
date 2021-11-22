@@ -8,7 +8,6 @@ from PyQt5.QtWidgets import QApplication, QMainWindow, QTableWidget, QTableWidge
 class MyWidget(QMainWindow):
     def __init__(self):
         super().__init__()
-        self.tableWidget = QTableWidget()
         uic.loadUi('main.ui', self)
         con = sqlite3.connect('films_db.sqlite')
         cur = con.cursor()
