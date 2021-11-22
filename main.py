@@ -11,11 +11,11 @@ class MyWidget(QMainWindow):
         super().__init__()
         uic.loadUi('UI.ui', self)
         self.setFixedSize(400, 430)
-        self.f = False
+        self.f = 0
         self.pushButton.clicked.connect(self.click)
 
     def click(self):
-        self.f = True
+        self.f = randint(1, 200)
         self.update()
 
     def paintEvent(self, event):
@@ -24,7 +24,7 @@ class MyWidget(QMainWindow):
             qp.begin(self)
             qp.translate(200, 230)
             qp.setBrush(QColor(255, 255, 0))
-            qp.drawEllipse(-(x := randint(0, 200)), -x, x * 2, x * 2)
+            qp.drawEllipse(-self.f, -self.f, self.f * 2, self.f * 2)
             qp.end()
 
 if __name__ == '__main__':
