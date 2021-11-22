@@ -1,15 +1,17 @@
 import sqlite3
 import sys
 
-from PyQt5 import uic
 from PyQt5.QtWidgets import QApplication, QMainWindow, QTableWidgetItem, QDialog
 
+from addEditCoffeeForm import Ui_Dialog
+from mainUI import Ui_MainWindow
 
-class MyWidget(QMainWindow):
+
+class MyWidget(QMainWindow, Ui_MainWindow):
     def __init__(self):
         super().__init__()
-        uic.loadUi('main.ui', self)
-        self.con = sqlite3.connect('films_db.sqlite')
+        self.setupUi(self)
+        self.con = sqlite3.connect('data/films_db.sqlite')
         self.cur = self.con.cursor()
         self.pushButton.clicked.connect(self.add)
         self.pushButton_2.clicked.connect(self.edit)
@@ -42,10 +44,10 @@ class MyWidget(QMainWindow):
         self.con.close()
 
 
-class MyDialog(QDialog):
+class MyDialog(QDialog, Ui_Dialog):
     def __init__(self, parent, i=None):
         super().__init__(parent)
-        uic.loadUi('addEditCoffeeForm.ui', self)
+        self.setupUi(self)
         self.setWindowTitle('Изменение записи' if i else 'Создание записи')
         self.pushButton.clicked.connect(self.conf)
         self.pushButton_2.clicked.connect(self.close)
@@ -61,7 +63,7 @@ class MyDialog(QDialog):
     def conf(self):
         p = self.parent()
         if self.lineEdit.text() and self.lineEdit_2.text() and self.lineEdit_4.text() \
-                and self.lineEdit_5.text().isdigit() and self.lineEdit_6.text().isdigit()\
+                and self.lineEdit_5.text().isdigit() and self.lineEdit_6.text().isdigit() \
                 and (self.lineEdit_3.text() == '0' or self.lineEdit_3.text() == '1'):
             if self.i:
                 p.cur.execute(f"""UPDATE Coffee 
