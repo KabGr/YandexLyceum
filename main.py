@@ -71,8 +71,8 @@ class MyDialog(QDialog):
                                   WHERE id={self.i[0]}""")
             else:
                 p.cur.execute(f"""INSERT INTO Coffee(name, roasting, ground, taste, price, volume) 
-                                  VALUES ({self.lineEdit.text()}, {self.lineEdit_2.text()}, 
-                                  {self.lineEdit_3.text()}, {self.lineEdit_4.text()}, 
+                                  VALUES ('{self.lineEdit.text()}', '{self.lineEdit_2.text()}', 
+                                  {self.lineEdit_3.text()}, '{self.lineEdit_4.text()}', 
                                   {self.lineEdit_5.text()}, {self.lineEdit_6.text()})""")
             p.con.commit()
             p.update_table()
